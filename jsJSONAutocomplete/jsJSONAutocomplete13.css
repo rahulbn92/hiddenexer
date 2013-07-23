@@ -1,0 +1,11 @@
+#suggestionBox
+  {
+    display: box;
+    border: solid 1px lightgreen;
+    width : 170px;
+    height: auto;
+    visibility: hidden;
+    position: relative;
+    top: -2px;
+    left: 2px;
+  }
