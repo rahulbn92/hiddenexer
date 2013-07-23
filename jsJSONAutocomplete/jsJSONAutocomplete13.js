@@ -1,3 +1,5 @@
+var inputText = document.getElementById("textBox");
+inputText.onkeyup = function() {
 var jsonObject = [
   {"name":"Luigi Damiano"},
   {"name":"Zenith Coboro"},
@@ -22,28 +24,26 @@ var jsonObject = [
   {"name":"Kenichi Suzuki"},
   {"name":"Rick Olson"}
 ];
+var person = new showSuggestion(jsonObject);
+person.display();
+}
 
-var inputText = document.getElementById("textBox");
-inputText.addEventListener("keyup", showSuggestion);
 
 // function for autosuggesting names
-function showSuggestion(){
+function showSuggestion(jsonObject){
+  this.jsonObject = jsonObject;
   var suggestionBox = document.getElementById("suggestionBox");
   suggestionBox.style.visibility = "visible";
   var inputTextLength = inputText.value.length;
-  check((inputTextLength));
-}
-
-// function for checking substrings
-function check(i) {
   suggestionBox.innerHTML = "";
-  for(var j = 0 ; j < jsonObject.length , i > 0 ; j++){
-    if(inputText.value.substring(0,i).toLowerCase() === jsonObject[j].name.substring(0,i).toLowerCase()){
-      suggestionBox.appendChild(document.createTextNode(jsonObject[j].name));
-      suggestionBox.appendChild(document.createElement("br"));
+  this.display = function() {
+    for(var j = 0 ; j < this.jsonObject.length , inputTextLength > 0 ; j++){
+      if(inputText.value.substring(0,inputTextLength).toLowerCase() === this.jsonObject[j].name.substring(0,inputTextLength).toLowerCase()){
+        suggestionBox.appendChild(document.createTextNode(this.jsonObject[j].name));
+        suggestionBox.appendChild(document.createElement("br"));
+      }
     }
   }
-}
+} 
 
   
- 
