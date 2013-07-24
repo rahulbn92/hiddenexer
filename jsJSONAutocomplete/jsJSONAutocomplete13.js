@@ -23,8 +23,9 @@ inputText.onkeyup = function() {
     {"name":"Ari Kama"},
     {"name":"Kenichi Suzuki"},
     {"name":"Rick Olson"}
-  ];
+  ]
   var person = new showSuggestion(jsonObject);
+  person.suggestions();
   person.display();
 }
 
@@ -32,18 +33,29 @@ inputText.onkeyup = function() {
 // function for autosuggesting names
 function showSuggestion(jsonObject){
   this.jsonObject = jsonObject;
+  var that = this;
   var suggestionBox = document.getElementById("suggestionBox");
   suggestionBox.style.visibility = "visible";
   var inputTextLength = inputText.value.length;
+  var suggestionsArray = new Array();
   suggestionBox.innerHTML = "";
-  this.display = function() {
-    for(var j = 0 ; j < this.jsonObject.length , inputTextLength > 0 ; j++){
-      if(inputText.value.substring(0,inputTextLength).toLowerCase() === this.jsonObject[j].name.substring(0,inputTextLength).toLowerCase()){
-        suggestionBox.appendChild(document.createTextNode(this.jsonObject[j].name));
-        suggestionBox.appendChild(document.createElement("br"));
+  this.suggestions = function() {
+    for(var j = 0 ; j < jsonObject.length && inputTextLength > 0 ; j++){
+      if(inputText.value.substring(0,inputTextLength).toLowerCase() === jsonObject[j].name.substring(0,inputTextLength).toLowerCase()){
+       suggestionsArray.push(jsonObject[j].name);
+       
       }
     }
   }
-} 
 
-  
+  this.display = function() {
+    for(var i=0 ;i<suggestionsArray.length;i++ )
+    {
+    suggestionBox.appendChild(document.createTextNode(suggestionsArray[i]));
+   suggestionBox.appendChild(document.createElement("br"));
+    
+    }
+  } 
+}
+
+
