@@ -42,18 +42,14 @@ function showSuggestion(jsonObject){
   this.suggestions = function() {
     for(var j = 0 ; j < jsonObject.length && inputTextLength > 0 ; j++){
       if(inputText.value.substring(0,inputTextLength).toLowerCase() === jsonObject[j].name.substring(0,inputTextLength).toLowerCase()){
-       suggestionsArray.push(jsonObject[j].name);
-       
+        suggestionsArray.push(jsonObject[j].name);
       }
     }
   }
-
   this.display = function() {
-    for(var i=0 ;i<suggestionsArray.length;i++ )
-    {
-    suggestionBox.appendChild(document.createTextNode(suggestionsArray[i]));
-   suggestionBox.appendChild(document.createElement("br"));
-    
+    for(var i = 0 ; i < suggestionsArray.length ; i++ ) {
+      suggestionBox.appendChild(document.createTextNode(suggestionsArray[i]));
+      suggestionBox.appendChild(document.createElement("br"));
     }
   } 
 }
