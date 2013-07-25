@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>jsFormValidation</title>
+    <link rel ="stylesheet" type = "text/css" href = "jsFormValidateUsingRegExp.css">
+  </head>
+  <body>
+    <form id = "formBox" action = "register" method = "post">
+      <p id = "heading">Registration Form</p>
+      <p>
+        <label for = "loginIdText" >Login Id</label>
+        <input id = "loginIdtext" class = "inputValue">
+      </p>
+      <p>
+        <label for = "emailText" >Email</label>
+        <input id = "emailText" class = "inputValue">
+      </p>
+      <p>
+        <label for = "nameText" >Name</label>
+        <input id = "nameText" class = "inputValue">
+      </p>
+      <p id = "timezone">Timezone
+        <select name = "DropDownTimezone" id = "DropDownTimezone">
+          <option value = "-12.0">(GMT -12:00) </option>
+          <option value = "-11.0">(GMT -11:00) </option>
+          <option value = "-10.0">(GMT -10:00) </option>
+          <option value = "-9.0">(GMT -9:00) </option>
+        </select>
+      </p>
+      <p>
+        <label for = "homePageText" >HomePage</label>
+        <input id = "homePageText" class = "inputValue">
+      </p>
+      <p>
+        <label id = "aboutMe" for = "aboutMeText" >About Me</label>
+        <textarea id = "aboutMeText" class="inputValue"></textarea>
+      </p>
+      <p> 
+        <input type = "checkbox" id = "checkbox"  >
+        <label id = "notification" for = "checkbox">Receive notifications of comments</label>
+      </p>
+      <p id = "extraText" >You will be sent an email when someone posts comments to your blog or album</p>
+      <p id = "footerSection"> Your passwords will be mailed to you</p>
+      <button type = "submit" id = "submitButton" >go</button>
+    </form>
+
+  </body>
+
+    <script type = "text/javascript" src = "jsFormValidateUsingRegExp.js"></script>
+
+</html>

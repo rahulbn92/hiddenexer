@@ -1,0 +1,69 @@
+#formbox
+  {
+    display: block;
+    height: 550px;
+    margin: auto;
+    width: 400px;
+    background-color: skyblue;
+  }
+#heading
+  {
+    display: block;
+    height: 25px;
+    text-align: center;
+    padding-top:5px;
+    background-color: green;
+  }
+label
+  {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 50px;
+    width: 80px;
+  }
+p 
+  {
+    display: block
+  }
+#aboutMe
+  {
+    position: relative;
+    top: -85px;
+  }
+textarea
+  {
+    height: 100px;
+    width: 250px;
+  }
+#timezone
+  {
+    margin-left: 5px;
+  }
+#dropDownTimezone
+  {
+    margin-left: 70px; 
+  }
+#footerSection 
+  {
+    text-align:center;
+  }
+#submitButton
+  {
+    margin-left: 180px;
+  }
+#homePageText , #loginIdText , #emailText , #aboutMeText , #nameText
+  {
+    display: inline-block;
+    margin-right: 10px;
+  }
+#notification
+  {
+    width: 300px;
+  }
+#extraText
+  {
+    margin-left: 5px;
+    position: relative;
+    top: -10px;
+    font-size: 14px;
+  }
