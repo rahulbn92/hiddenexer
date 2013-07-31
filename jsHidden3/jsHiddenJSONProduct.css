@@ -1,0 +1,24 @@
+#outerBox
+{
+  width: 600px;
+  height: auto;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+
+img 
+{
+  height: 120px;
+  width: 120px;
+}
+
+#sort
+{
+  height: auto;
+  width: 150px;
+  position: relative;
+  left: 750px;
+  top: -300px;
+  border: solid 1px black;
+  background-color: blue;
+}
