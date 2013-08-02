@@ -1,6 +1,6 @@
-var digitKeys     = document.getElementsByClassName('keysContainingText');
+var digitKeys      = document.getElementsByClassName('keysContainingText');
 var textScreen     = document.getElementById('text');
-var operatorKeys   = document.getElementsByClassName('keysContainingOperator');
+var operaterKey    = document.getElementsByClassName('keysContainingOperator');
 var resultKey      = document.getElementById('keyResult');
 var clear          = document.getElementById('clear');
 var MRKey          = document.getElementById('MRKey');
@@ -9,149 +9,116 @@ var MMinusKey      = document.getElementById('M-Key');
 var MCKey          = document.getElementById('MCKey');
 var signKey        = document.getElementById('signKey');
 var decimalKey     = document.getElementById('decimalKey');
+var clearAll       = document.getElementById("clearAll");
 var operater;
-var memoryPlus;
-var string1;
+var memoryPlus = 0;
+var count =0;
 var result;
-var string2 ;
 
 window.onload = function() {
   for(var i = 0 ; i < digitKeys.length ; i++) {
     digitKeys[i].onclick = function() {
       var input = new insertNumber(this.value);
     }
+  }  
+  for(var i = 0 ; i < operaterKey.length ; i++) {
+    operaterKey[i].onclick = function() {
+      var input = new insertOperater(this.value);
+    }
   }
 }
 
 // function for inserting digit on screen
 function insertNumber(number) {
-  if(!string1) {
+  if(result == null && text.value != "malformed Expression"){
+    textScreen.value += number;
+  }
+  else  {
+    result = null;
     textScreen.value = "";
-  }
-  textScreen.value += number;
-  if(!operater) {
-   string1 = textScreen.value;
-  }
-  else {
-    string2 = textScreen.value;
+    textScreen.value += number;
   }
 }
 
-// clicking operater keys
-for(var j = 0 ; j < operatorKeys.length ; j++) {
-  operatorKeys[j].onclick = function() {
-    if(string1 || result)  {
-      var operatorClick = new  enterOperator(this.value);
-    }
+// function for result key
+resultKey.onclick =  function() {
+  var digits = textScreen.value.split("");
+  var inputLength = digits.length;
+  if(digits[0] == "*" || digits[0] == "/") {
+    textScreen.value = "malformed Expression";
+  }
+  else if(digits[inputLength-1] == "*" || digits[inputLength-1] == "/" || digits[inputLength-1] == "+" || digits[inputLength-1] == "-" ) {
+    textScreen.value = "malformed Expression";
+  }
+  else {
+    result = eval(textScreen.value);
+    textScreen.value = result;
   }
 }
 
 // function for inserting operator
-function enterOperator(currentOperater) {
-  textScreen.value = currentOperater ;
-  operater = currentOperater ;
-  textScreen.value = "";
-}
-
-// function for showing result
-resultKey.onclick = function() {
-  textScreen.value = "";
-  if(!result) {
-    if(operater == "+") {
-      textScreen.value =    parseFloat(string1)  + parseFloat(string2);
-    }
-    else if( operater == "-") {
-      textScreen.value =    (parseFloat(string1)) - (parseFloat(string2));
-    }
-    else if( operater == "x") {
-      textScreen.value =    (parseFloat(string1)) * (parseFloat(string2));
-    }
-    else {
-     textScreen.value =    (parseFloat(string1)) / (parseFloat(string2));
-    }
-    operater =null;
-    string1 = null;
-    string2 = null;
-    result = parseFloat(textScreen.value);
-  }
-  else{
-    if(operater == "+") {
-      textScreen.value =    parseFloat(result)  + parseFloat(string2);
-    }
-    else if( operater == "-") {
-      textScreen.value =    (parseFloat(result)) - (parseFloat(string2));
-    }
-    else if( operater == "x") {
-      textScreen.value =    (parseFloat(result)) * (parseFloat(string2));
-    }
-    else {
-      textScreen.value =    (parseFloat(result)) / (parseFloat(string2));
-    }
-    operater =null;
-    string1 = null;
-    string2 = null;
-    result = parseFloat(textScreen.value);
+function insertOperater(operator) {
+  var digits = textScreen.value.split("");
+  var inputLength = digits.length;
+  if(digits[inputLength-1] != "*" && digits[inputLength-1] != "/" && digits[inputLength-1] != "+" && digits[inputLength-1] != "-" && textScreen.value!= "malformed Expression" ) {
+    textScreen.value += operator;
+    count = 0;
+    result = null;
   }
 }
 
-// function for deleting wrong digit
+// function for clearing last entered digit
 clear.onclick = function() {
-  var digitArray = textScreen.value.split("");
-  var lastDigit = (digitArray.length-1);
-  digitArray.pop(digitArray.indexOf(digitArray[lastDigit],1));
-  textScreen.value = digitArray.join("");
-  if(operater) {
-    var string2DigitArray = string2.split("");
-    string2DigitArray.pop(string2DigitArray.indexOf(string2DigitArray[length-1],1));
-    string2 = string2DigitArray.join("");
+  var digits = textScreen.value.split("");
+  var inputLength = digits.length;
+  if(digits[inputLength-1] == ".") {
+    count--;
   }
-  else {
-    var string1DigitArray = string1.split("");
-    string1DigitArray.pop(string1DigitArray.indexOf(string1DigitArray[length-1],1));
-    string1 = string1DigitArray.join("");
-  }
+  digits.pop(digits[inputLength-1]);
+  textScreen.value = digits.join("");
 }
 
-// function for m+ key operation
-MPlusKey.onclick = function() {
-  if(!memoryPlus) {
-    memoryPlus = parseFloat(textScreen.value);
-  }
-  else {
-    memoryPlus = parseFloat(memoryPlus) + parseFloat(textScreen.value);
-    textScreen.value = memoryPlus; 
-  }
-}
-
-// function for signkey 
+// function for changing the sign
 signKey.onclick = function() {
-  textScreen.value = -parseFloat(textScreen.value);
-  if(!string2) {
-    string1 = -parseFloat(string1);
-  }
-  else {
-    string2 = -parseFloat(string2);
-  }
+  textScreen.value = -(eval(textScreen.value)); 
 }
 
-// function for m- key operation 
+// function for m+ key
+MPlusKey.onclick = function() {
+  memoryPlus = memoryPlus + result;
+  textScreen.value = memoryPlus;
+}
+
+// function for m- key
 MMinusKey.onclick = function() {
-  if(!memoryPlus) {
-    memoryPlus = parseFloat(textScreen.value);
-  }
-  else {
-    memoryPlus = parseFloat(memoryPlus) - parseFloat(textScreen.value);
-    textScreen.value = memoryPlus; 
-  }
+  memoryPlus = memoryPlus - result;
+  textScreen.value = memoryPlus;
 }
 
-// function for memory clear
+// function for MC key
 MCKey.onclick = function() {
-  memoryPlus = null;
+  memoryPlus = 0;
 }
 
-// function for showing current memort status
+// function for MR key
 MRKey.onclick = function() {
   textScreen.value = memoryPlus;
+}
+
+// function for decimal key
+decimalKey.onclick = function() {
+  if( count == 0) {
+    textScreen.value += decimalKey.value;
+    count++;
+  } 
+  if(result != null || textScreen.value == "") {
+    count = 0;
+  }
+}
+
+// function for clearAll key
+clearAll.onclick = function() {
+  textScreen.value = "";
+  count = 0 ;
 }
 
