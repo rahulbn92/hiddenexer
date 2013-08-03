@@ -1,0 +1,91 @@
+#quizBox
+{
+  height: 400px;
+  width: 500px;
+  border: solid 1px black;
+  background-color: lightblue;
+  margin-left: 100px;
+  margin-top: 100px;
+  float: left;
+}
+
+#timer
+{
+  height: 100px;
+  width: 500px;
+  border-bottom: solid 1px black;
+  font-size: 30px;
+  text-align: center;
+}
+
+#questionBox
+{
+  height: 100px;
+  width: 200px;
+  border: solid 1px black;
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+#next
+{
+  width: 100px;
+  height: 30px;
+  position: relative;
+  margin-top: -100px;
+  margin-left: -100px;
+}
+
+#score
+{
+  position: relative;
+  height: 50px;
+  width: 120px;
+  border: solid 1px black;
+  left: 300px;
+  top:0px;
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+#solutions
+{
+  height: auto;
+  border: solid 1px black;
+  width: 500px;
+  position: relative;
+  left: 500px;
+  top: -300px;
+  background-color: yellow;
+  display: none;
+}
+
+#time
+{
+  font-size: 30px;
+  text-align: center;
+}
+
+#answer
+{
+  position: relative;
+  top: -50px;
+  height: 20px;
+  width: 50px;
+}
+
+#questionno , #question , #yourAnwer , #correctAnswer
+{
+  width: auto;
+  font-size: 25px;
+}
+
+#summary
+{
+  margin-left: 80px;
+}
+
+#summary td 
+{
+  border: solid 1px black;
+}
